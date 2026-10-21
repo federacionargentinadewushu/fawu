@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sedes de la Escuela</title>
+
+    <!-- Leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .filtro {
+            margin-bottom: 20px;
+        }
+
+        .filtro label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        select {
+            width: 280px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: white;
+            font-size: 16px;
+        }
+
+        .contenido {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        #mapa {
+            height: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .sedes {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .sede {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .sede h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .dato {
+            margin: 7px 0;
+            color: #555;
+        }
+
+        @media (max-width: 800px) {
+            .contenido {
+                grid-template-columns: 1fr;
+            }
+
+            #mapa {
+                height: 450px;
+            }
+
+            select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <h1>Nuestras sedes</h1>
+
+    <p class="subtitulo">
+        Encontrá la sede más cercana seleccionando una zona.
+    </p>
+
+    <div class="filtro">
+        <label for="zona">Provincia / zona</label>
+
+        <select id="zona">
+            <option value="Todas">Todas las provincias</option>
+            <option value="Buenos Aires">Buenos Aires</option>
+            <option value="Capital">Capital (CABA)</option>
+            <option value="Córdoba">Córdoba</option>
+            <option value="Entre Ríos">Entre Ríos</option>
+            <option value="Mendoza">Mendoza</option>
+            <option value="Chaco">Chaco</option>
+            <option value="Santa Fe">Santa Fe</option>
+            <option value="San Juan">San Juan</option>
+            <option value="Río Negro">Río Negro</option>
+            <option value="Tucumán">Tucumán</option>
+        </select>
+    </div>
+
+    <div class="contenido">
+
+        <!-- MAPA -->
+        <div id="mapa"></div>
+
+        <!-- LISTA DE SEDES -->
+        <div class="sedes" id="listaSedes"></div>
+
+    </div>
+
+</div>
+
+
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+    // ==========================================
+    // DATOS DE LAS SEDES
+    // ==========================================
+
+    const sedes = [
+        
+        // 1. Centro de Cultura China Qi Hu Long
+        {
+            nombre: "Centro de Cultura China Qi Hu Long Shaolin Quan Córdoba Argentina",
+            sede: "Sede Córdoba",
+            zona: "Córdoba",
+            direccion: "Héroes de Vilcapugio 1745, Yofre Norte, Córdoba Capital",
+            lat: -31.42, lon: -64.18
+        },
+
+        // 2. Wu Shu Paraná
+        {
+            nombre: "Wu Shu Paraná",
+            sede: "Sede central",
+            zona: "Entre Ríos",
+            direccion: "España 716, Paraná, Entre Ríos",
+            lat: -31.73, lon: -60.53
+        },
+        {
+            nombre: "Wu Shu Paraná",
+            sede: "Filial 1",
+            zona: "Entre Ríos",
+            direccion: "República de Siria 483, Paraná, Entre Ríos",
+            lat: -31.73, lon: -60.53
+        },
+
+        // 3. Bagua Zhang La Plata
+        {
+            nombre: "Bagua Zhang La Plata",
+            sede: "Sede La Plata",
+            zona: "Buenos Aires",
+            direccion: "Calle 17 N.º 1638, entre 65 y 66, La Plata",
+            lat: -34.9214, lon: -57.9544
+        },
+
+        // 4. Ng Mui Wing Chun
+        {
+            nombre: "Ng Mui Wing Chun",
+            sede: "Sociedad de Fomento Santa Rita",
+            zona: "Buenos Aires",
+            direccion: "Calle 303 y 354, Ranelagh, Buenos Aires",
+            lat: -34.79, lon: -58.20
+        },
+        {
+            nombre: "Ng Mui Wing Chun",
+            sede: "Sociedad de Fomento Los",
+            zona: "Buenos Aires",
+            direccion: "Calle 121 N.º 660, entre 7 y 8, Berazategui",
+            lat: -34.76, lon: -58.21
+        },
+
+        // 5. Asociación Tai Chi Mendoza
+        {
+            nombre: "Asociación Tai Chi Mendoza",
+            sede: "Sede Mendoza",
+            zona: "Mendoza",
+            direccion: "Alpatacal 3150, Mendoza",
+            lat: -32.89, lon: -68.84
+        },
+
+        // 6. Yang Taijiquan Tradicional Resistencia
+        {
+            nombre: "Yang Taijiquan Tradicional Resistencia",
+            sede: "Sede Resistencia",
+            zona: "Chaco",
+            direccion: "Ameghino 1055, Resistencia, Chaco",
+            lat: -27.45, lon: -58.99
+        },
+
+        // 7. Ling Dao Long
+        {
+            nombre: "Ling Dao Long",
+            sede: "Casa de la Cultura",
+            zona: "Córdoba",
+            direccion: "Casa de la Cultura, Devoto, Córdoba",
+            lat: -31.98, lon: -62.98
+        },
+
+        // 8. Yong Lu Kung Fu
+        {
+            nombre: "Yong Lu Kung Fu",
+            sede: "Sede Rosario",
+            zona: "Santa Fe",
+            direccion: "San Martín 1452, Rosario, Santa Fe",
+            lat: -32.95, lon: -60.65
+        },
+
+        // 9. Asociación Lung Chuan
+        {
+            nombre: "Asociación Lung Chuan",
+            sede: "Sede Haedo",
+            zona: "Buenos Aires",
+            direccion: "Congreso 1728, Haedo, Buenos Aires",
+            lat: -34.64, lon: -58.59
+        },
+
+        // 10. Lu Chuan Kung Fu
+        {
+            nombre: "Lu Chuan Kung Fu",
+            sede: "Sede Rosario",
+            zona: "Santa Fe",
+            direccion: "Federico de la Barra 1216, Rosario, Santa Fe",
+            lat: -32.95, lon: -60.65
+        },
+
+        // 11. Taiwan Kung Fu
+        {
+            nombre: "Taiwan Kung Fu",
+            sede: "Sede San Juan",
+            zona: "San Juan",
+            direccion: "Chile Oeste 52, San Juan",
+            lat: -31.54, lon: -68.53
+        },
+
+        // 12. Wushu Kungfu Hu Nan
+        {
+            nombre: "Wushu Kungfu Hu Nan",
+            sede: "Sede Bahía Blanca",
+            zona: "Buenos Aires",
+            direccion: "Corrientes 310, Bahía Blanca, Buenos Aires",
+            lat: -38.72, lon: -62.27
+        },
+
+        // 13. Shan Hu
+        {
+            nombre: "Shan Hu 山虎",
+            sede: "Sede El Bolsón",
+            zona: "Río Negro",
+            direccion: "Valle Nuevo 56, El Bolsón, Río Negro",
+            lat: -41.96, lon: -71.53
+        },
+
+        // 14. Tigres de Manantial
+        {
+            nombre: "Tigres de Manantial",
+            sede: "Sede El Manantial",
+            zona: "Tucumán",
+            direccion: "Belgrano 430 (Palo Borracho), El Manantial, Tucumán",
+            lat: -26.83, lon: -65.27
+        },
+
+        // 15. Shaolin Tao
+        {
+            nombre: "Shaolin Tao",
+            sede: "Sede Lunlunta",
+            zona: "Mendoza",
+            direccion: "San Zenón 1314, Lunlunta, Mendoza",
+            lat: -33.04, lon: -68.87
+        },
+
+        // 16. Escuela Tai-Chi Wu-Chi
+        {
+            nombre: "Escuela Tai-Chi Wu-Chi",
+            sede: "Sede CABA",
+            zona: "Capital",
+            direccion: "Libertador 6223, CABA",
+            lat: -34.55, lon: -58.45
+        },
+
+        // 17. Club Argentino de Wushu
+        {
+            nombre: "Club Argentino de Wushu",
+            sede: "Sede central Bogado",
+            zona: "Capital",
+            direccion: "Bogado 4438, CABA",
+            lat: -34.60, lon: -58.48
+        },
+        {
+            nombre: "Club Argentino de Wushu",
+            sede: "Sede Barrio Chino",
+            zona: "Capital",
+            direccion: "Montañeses 2175, CABA",
+            lat: -34.56, lon: -58.46
+        },
+        {
+            nombre: "Club Argentino de Wushu",
+            sede: "Sede River",
+            zona: "Capital",
+            direccion: "Av. Presidente Figueroa Alcorta 759, CABA",
+            lat: -34.54, lon: -58.45
+        },
+        {
+            nombre: "Club Argentino de Wushu",
+            sede: "Sede Rafaela",
+            zona: "Santa Fe",
+            direccion: "Av. Hipólito Irigoyen y Candioti 1204, Rafaela, Santa Fe",
+            lat: -31.25, lon: -61.49
+        },
+        {
+            nombre: "Club Argentino de Wushu",
+            sede: "Sede Palacio Paz",
+            zona: "Capital",
+            direccion: "Av. Santa Fe 750, CABA",
+            lat: -34.59, lon: -58.38
+        },
+        {
+            nombre: "Club Argentino de Wushu",
+            sede: "Sede Norte",
+            zona: "Buenos Aires",
+            direccion: "Gral. José de San Martín 406, Vicente López, Buenos Aires",
+            lat: -34.53, lon: -58.48
+        },
+        {
+            nombre: "Club Argentino de Wushu",
+            sede: "Sede Olivos",
+            zona: "Buenos Aires",
+            direccion: "Carlos Villate 456, Olivos, Buenos Aires",
+            lat: -34.51, lon: -58.49
+        },
+        {
+            nombre: "Club Argentino de Wushu",
+            sede: "Colegio Chino Hua Xia",
+            zona: "Capital",
+            direccion: "Av. Rivadavia 5652, CABA",
+            lat: -34.62, lon: -58.43
+        }
+
+    ];
+
+
+    // ==========================================
+    // CREAR MAPA
+    // ==========================================
+
+    const mapa = L.map('mapa').setView(
+        [-34.6037, -58.3816],
+        10
+    );
+
+
+    // Mapa de OpenStreetMap
+
+    L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+            attribution: '&copy; OpenStreetMap contributors'
+        }
+    ).addTo(mapa);
+
+
+    // Grupo de marcadores
+
+    let grupoMarcadores = L.layerGroup().addTo(mapa);
+
+
+    // ==========================================
+    // MOSTRAR SEDES
+    // ==========================================
+
+    function mostrarSedes(zonaSeleccionada) {
+
+        // Limpiar marcadores anteriores
+        grupoMarcadores.clearLayers();
+
+        // Limpiar lista
+        const lista = document.getElementById("listaSedes");
+        lista.innerHTML = "";
+
+
+        // Filtrar sedes
+
+        const sedesFiltradas = sedes.filter(
+            sede => sede.zona === zonaSeleccionada
+        );
+
+
+        // Coordenadas para ajustar el mapa
+
+        const coordenadas = [];
+
+
+        // Crear cada sede
+
+        sedesFiltradas.forEach(sede => {
+
+            // ------------------------------
+            // MARCADOR EN EL MAPA
+            // ------------------------------
+
+            const marcador = L.marker([
+                sede.lat,
+                sede.lon
+            ]);
+
+
+            // Popup del marcador
+
+            marcador.bindPopup(`
+                <strong>${sede.nombre}</strong><br>
+                ${sede.direccion}<br>
+                Sede: ${sede.sede}
+            `);
+
+
+            marcador.addTo(grupoMarcadores);
+
+
+            coordenadas.push([
+                sede.lat,
+                sede.lon
+            ]);
+
+
+            // ------------------------------
+            // TARJETA DE LA SEDE
+            // ------------------------------
+
+            const tarjeta = document.createElement("div");
+
+            tarjeta.className = "sede";
+
+            tarjeta.innerHTML = `
+                <h3>${sede.nombre}</h3>
+
+                <div class="dato">
+                    📍 ${sede.direccion}
+                </div>
+
+                <div class="dato">
+                    ${sede.sede}
+                </div>
+            `;
+
+            lista.appendChild(tarjeta);
+
+        });
+
+
+        // ==================================
+        // AJUSTAR MAPA A LAS SEDES
+        // ==================================
+
+        if (coordenadas.length > 0) {
+
+            const limites = L.latLngBounds(coordenadas);
+
+            mapa.fitBounds(limites, {
+                padding: [40, 40]
+            });
+
+        }
+
+    }
+
+
+    // ==========================================
+    // CAMBIO DE ZONA
+    // ==========================================
+
+    document
+        .getElementById("zona")
+        .addEventListener("change", function() {
+
+            mostrarSedes(this.value);
+
+        });
+
+
+    // ==========================================
+    // CARGAR ZONA INICIAL
+    // ==========================================
+
+    mostrarSedes("Buenos Aires");
+
+</script>
+
+</body>
+</html>
