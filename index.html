@@ -528,15 +528,17 @@
 
 </script>
 
-</body>
-
 <!-- FOOTER FAWU -->
 <footer class="fawu-footer">
   <div class="fawu-footer-container">
 
     <!-- Identidad institucional -->
     <div class="fawu-footer-brand">
-      <h2>FAWU</h2>
+      <img
+        src="assets/header_logo.jpeg"
+        alt="Logo de la Federación Argentina de Wushu"
+        class="fawu-footer-logo"
+      >
       <p>Federación Argentina de Wushu</p>
       <span>Promoviendo el Wushu en Argentina</span>
     </div>
@@ -638,6 +640,15 @@
     color: #ffffff;
     font-weight: 600;
   }
+    
+  .fawu-footer-logo {
+    display: block;
+    width: 150px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 18px;
+  }
 
   .fawu-footer-bottom {
     border-top: 1px solid #2b394d;
@@ -669,5 +680,5 @@
   document.getElementById("fawu-year").textContent =
     new Date().getFullYear();
 </script>
-
+</body>
 </html>
