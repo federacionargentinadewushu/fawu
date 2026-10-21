@@ -529,4 +529,145 @@
 </script>
 
 </body>
+
+<!-- FOOTER FAWU -->
+<footer class="fawu-footer">
+  <div class="fawu-footer-container">
+
+    <!-- Identidad institucional -->
+    <div class="fawu-footer-brand">
+      <h2>FAWU</h2>
+      <p>Federación Argentina de Wushu</p>
+      <span>Promoviendo el Wushu en Argentina</span>
+    </div>
+
+    <!-- Navegación -->
+    <div class="fawu-footer-links">
+      <h3>Navegación</h3>
+      <a href="#inicio">Inicio</a>
+      <a href="#federacion">La Federación</a>
+      <a href="#escuelas">Escuelas y sedes</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+
+    <!-- Contacto -->
+    <div class="fawu-footer-contact">
+      <h3>Contacto</h3>
+      <p>¿Querés conocer más sobre la Federación?</p>
+      <a href="mailto:CORREO-OFICIAL-AQUI">
+        ✉ Contactanos por correo
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Franja inferior -->
+  <div class="fawu-footer-bottom">
+    <p>© <span id="fawu-year"></span> Federación Argentina de Wushu.
+      Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<style>
+  .fawu-footer {
+    background: #101b2d;
+    color: #f4f6fa;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 50px;
+  }
+
+  .fawu-footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 45px 30px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.2fr;
+    gap: 45px;
+  }
+
+  .fawu-footer-brand h2 {
+    margin: 0 0 8px;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #08a9df;
+  }
+
+  .fawu-footer-brand p {
+    margin: 0 0 10px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .fawu-footer-brand span {
+    color: #b9c3d1;
+    font-size: 14px;
+  }
+
+  .fawu-footer h3 {
+    margin: 5px 0 18px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+  }
+
+  .fawu-footer-links a,
+  .fawu-footer-contact a {
+    display: block;
+    width: fit-content;
+    margin: 11px 0;
+    color: #c8d2df;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+  }
+
+  .fawu-footer-links a:hover,
+  .fawu-footer-contact a:hover {
+    color: #08a9df;
+  }
+
+  .fawu-footer-contact p {
+    color: #c8d2df;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .fawu-footer-contact a {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .fawu-footer-bottom {
+    border-top: 1px solid #2b394d;
+    padding: 18px 20px;
+    text-align: center;
+  }
+
+  .fawu-footer-bottom p {
+    margin: 0;
+    color: #aeb9c8;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 700px) {
+    .fawu-footer-container {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding: 35px 24px;
+    }
+
+    .fawu-footer-brand h2 {
+      font-size: 36px;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById("fawu-year").textContent =
+    new Date().getFullYear();
+</script>
+
 </html>
