@@ -108,32 +108,58 @@
                 width: 100%;
             }
         }
-
                 
-        /* ==============================
-           HEADER INSTITUCIONAL FAWU
-           ============================== */
+                
+        /* ===== HEADER FAWU ===== */
         
         .fawu-header {
-            background: #101b2d;
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
+            position: relative;
             width: 100%;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            background: #142435;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        
+        /* Detalles diagonales en los extremos */
+        .fawu-header::before,
+        .fawu-header::after {
+            content: "";
+            position: absolute;
+            top: -20px;
+            width: 10px;
+            height: 150px;
+            transform: rotate(35deg);
+            pointer-events: none;
+        }
+        
+        .fawu-header::before {
+            left: 22px;
+            background: #08a9df;
+            box-shadow: 13px 0 0 #087eaf;
+        }
+        
+        .fawu-header::after {
+            right: 25px;
+            background: #ed1c2e;
+            box-shadow: 13px 0 0 #08a9df;
         }
         
         .fawu-header-container {
-            max-width: 1250px;
-            min-height: 120px;
+            max-width: 1500px;
+            min-height: 102px;
             margin: 0 auto;
-            padding: 18px 30px;
+            padding: 12px 5%;
             display: flex;
             align-items: center;
-            gap: 24px;
+            justify-content: space-between;
+            gap: 28px;
+            position: relative;
+            z-index: 1;
         }
         
         /* Logo */
-        
         .fawu-header-brand {
             display: flex;
             align-items: center;
@@ -142,135 +168,135 @@
         
         .fawu-header-logo {
             display: block;
-            width: 120px;
-            height: 120px;
+            width: 350px;
+            max-width: 30vw;
+            height: auto;
             object-fit: contain;
-            border-radius: 8px;
         }
         
-        /* Identidad */
-        
-        .fawu-header-identidad {
-            flex: 1;
-            min-width: 180px;
-        }
-        
-        .fawu-header-superior {
-            display: block;
-            color: #dce6f2;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 3px;
-        }
-        
-        .fawu-header-identidad h1 {
-            margin: 0;
-            color: #08a9df;
-            font-size: 34px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            line-height: 1.15;
-        }
-        
-        .fawu-header-identidad p {
-            margin: 7px 0 0;
-            color: #c3cfdf;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Menú */
-        
+        /* Navegación */
         .fawu-header-nav {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            flex-wrap: wrap;
-            gap: 8px;
+            justify-content: center;
+            gap: 28px;
         }
         
         .fawu-header-nav a {
-            color: #e5edf7;
+            position: relative;
+            padding: 12px 0;
+            color: #e7edf4;
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
-            padding: 10px 12px;
-            border-radius: 6px;
-            transition: background 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+            transition: color 0.2s ease;
         }
         
         .fawu-header-nav a:hover {
-            background: rgba(8, 169, 223, 0.14);
-            color: #08b8ef;
+            color: #08b9ed;
         }
         
-        /* Línea celeste inferior */
-        
-        .fawu-header-linea {
-            height: 4px;
-            background: linear-gradient(
-                90deg,
-                #087eaf,
-                #08a9df,
-                #70d5f5
-            );
+        .fawu-header-nav a.activo::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 3px;
+            height: 3px;
+            background: #08b9ed;
         }
         
-        /* Adaptación a celulares */
+        /* Botón rojo */
+        .fawu-header-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            padding: 13px 22px;
+            background: #ed1c2e;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+            border-radius: 9px;
+            box-shadow: 0 4px 12px rgba(237, 28, 46, 0.18);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
         
-        @media (max-width: 850px) {
+        .fawu-header-cta:hover {
+            background: #cf1425;
+            transform: translateY(-1px);
+        }
+        
+        .fawu-header-cta span {
+            font-size: 22px;
+            line-height: 1;
+        }
+        
+        /* Tablets */
+        @media (max-width: 1150px) {
+            .fawu-header-container {
+                gap: 20px;
+                padding: 16px 4%;
+            }
+        
+            .fawu-header-logo {
+                width: 280px;
+                max-width: 27vw;
+            }
+        
+            .fawu-header-nav {
+                gap: 16px;
+            }
+        
+            .fawu-header-nav a,
+            .fawu-header-cta {
+                font-size: 13px;
+            }
+        
+            .fawu-header-cta {
+                gap: 10px;
+                padding: 12px 15px;
+            }
+        }
+        
+        /* Celulares */
+        @media (max-width: 800px) {
             .fawu-header-container {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 14px 20px;
-                padding: 22px 18px;
+                padding: 20px 18px;
+                gap: 16px;
             }
         
-            .fawu-header-identidad {
-                flex: 0 1 auto;
+            .fawu-header-logo {
+                width: min(350px, 78vw);
+                max-width: 100%;
             }
         
-            .fawu-header-identidad h1 {
-                font-size: 28px;
+            .fawu-header-brand {
+                justify-content: center;
+                width: 100%;
             }
         
             .fawu-header-nav {
                 width: 100%;
-                justify-content: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .fawu-header-container {
-                flex-direction: column;
-                text-align: center;
-            }
-        
-            .fawu-header-logo {
-                width: 76px;
-                height: 76px;
-            }
-        
-            .fawu-header-identidad h1 {
-                font-size: 27px;
-            }
-        
-            .fawu-header-superior {
-                font-size: 11px;
-                letter-spacing: 1.5px;
-            }
-        
-            .fawu-header-nav {
-                gap: 4px;
+                flex-wrap: wrap;
+                gap: 6px 20px;
             }
         
             .fawu-header-nav a {
                 font-size: 13px;
-                padding: 9px 8px;
+            }
+        
+            .fawu-header-cta {
+                padding: 11px 18px;
             }
         }
         
+                
     </style>
 </head>
 
@@ -280,33 +306,29 @@
 <header class="fawu-header" id="inicio">
   <div class="fawu-header-container">
 
-    <!-- Logo institucional -->
     <a href="#inicio" class="fawu-header-brand">
       <img
         src="assets/header_logo.jpeg"
-        alt="Logo de la Federación Argentina de Wushu"
+        alt="Federación Argentina de Wushu"
         class="fawu-header-logo"
       >
     </a>
 
-    <!-- Identidad de la federación -->
-    <div class="fawu-header-identidad">
-      <span class="fawu-header-superior">FEDERACIÓN ARGENTINA</span>
-      <h1>DE WUSHU</h1>
-      <p>Tradición · Disciplina · Excelencia</p>
-    </div>
-
-    <!-- Navegación -->
     <nav class="fawu-header-nav" aria-label="Navegación principal">
-      <a href="#inicio">Inicio</a>
+      <a href="#inicio" class="activo">Inicio</a>
       <a href="#federacion">La Federación</a>
-      <a href="#escuelas">Escuelas y sedes</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#wushu">Wushu</a>
+      <a href="#escuelas">Sedes</a>
+      <a href="#noticias">Noticias</a>
     </nav>
 
+    <a href="#escuelas" class="fawu-header-cta">
+      Encontrá tu sede <span>→</span>
+    </a>
+
   </div>
-  <div class="fawu-header-linea"></div>
 </header>
+
     
 <div class="contenedor">
 
