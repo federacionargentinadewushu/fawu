@@ -295,8 +295,266 @@
                 padding: 11px 18px;
             }
         }
-        
+
                 
+        /* ===== SECCIÓN INSTITUCIONAL FAWU ===== */
+        
+        .fawu-institucional {
+            background: #f4f7fb;
+            color: #273649;
+            padding: 76px 24px;
+            scroll-margin-top: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .fawu-institucional-contenido {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+        
+        .fawu-institucional-etiqueta {
+            color: #078fbe;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        
+        .fawu-institucional h2 {
+            color: #142435;
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.2;
+            text-align: center;
+            margin: 0;
+        }
+        
+        .fawu-institucional-chino {
+            color: #69798c;
+            font-size: 20px;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .fawu-institucional-linea {
+            width: 72px;
+            height: 4px;
+            background: linear-gradient(90deg, #08a9df, #ed1c2e);
+            border-radius: 4px;
+            margin: 24px auto 34px;
+        }
+        
+        .fawu-institucional-contenido > p {
+            font-size: 16px;
+            line-height: 1.85;
+            margin: 0 0 18px;
+        }
+        
+        .fawu-institucional-contenido > .fawu-institucional-intro {
+            font-size: 18px;
+            font-weight: 600;
+            color: #24384e;
+        }
+        
+        /* Objetivos */
+        
+        .fawu-objetivos {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            margin: 42px 0 58px;
+        }
+        
+        .fawu-objetivo {
+            background: #fff;
+            padding: 28px 24px;
+            border-radius: 12px;
+            border: 1px solid #e4eaf1;
+            border-top: 3px solid #08a9df;
+            box-shadow: 0 6px 22px rgba(20, 36, 53, 0.04);
+        }
+        
+        .fawu-objetivo-icono {
+            color: #ed1c2e;
+            font-size: 25px;
+            margin-bottom: 14px;
+        }
+        
+        .fawu-objetivo h3,
+        .fawu-disciplinas h3,
+        .fawu-recursos h3 {
+            color: #142435;
+            font-size: 20px;
+            margin: 0 0 12px;
+        }
+        
+        .fawu-objetivo p,
+        .fawu-disciplinas > p {
+            color: #586779;
+            font-size: 14px;
+            line-height: 1.8;
+            margin: 0;
+        }
+        
+        /* Disciplinas */
+        
+        .fawu-disciplinas {
+            text-align: center;
+            padding: 38px 0 52px;
+            border-top: 1px solid #dce4ed;
+        }
+        
+        .fawu-etiquetas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 25px;
+        }
+        
+        .fawu-etiquetas span {
+            background: #fff;
+            border: 1px solid #dce5ef;
+            color: #253a51;
+            padding: 12px 16px;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        /* Invitación */
+        
+        .fawu-invitacion {
+            background: #142435;
+            color: #fff;
+            text-align: center;
+            padding: 42px 30px;
+            border-radius: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fawu-invitacion h3 {
+            font-size: clamp(22px, 3vw, 29px);
+            margin: 0 0 15px;
+        }
+        
+        .fawu-invitacion p {
+            color: #d3deea;
+            line-height: 1.8;
+            max-width: 760px;
+            margin: 0 auto 25px;
+        }
+        
+        .fawu-institucional-boton {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: #ed1c2e;
+            color: #fff;
+            padding: 13px 21px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.2s ease;
+        }
+        
+        .fawu-institucional-boton:hover {
+            background: #cc1425;
+        }
+        
+        .fawu-institucional-boton span {
+            font-size: 20px;
+        }
+        
+        /* Recursos */
+        
+        .fawu-recursos {
+            margin-top: 54px;
+        }
+        
+        .fawu-recursos h3 {
+            margin-bottom: 20px;
+        }
+        
+        .fawu-recurso {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: #fff;
+            padding: 20px 22px;
+            margin-bottom: 12px;
+            border: 1px solid #e0e7ef;
+            border-radius: 9px;
+            text-decoration: none;
+            color: #253a51;
+            transition: border-color 0.2s ease,
+                        transform 0.2s ease;
+        }
+        
+        .fawu-recurso:hover {
+            border-color: #08a9df;
+            transform: translateY(-2px);
+        }
+        
+        .fawu-recurso strong,
+        .fawu-recurso small {
+            display: block;
+        }
+        
+        .fawu-recurso strong {
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+        
+        .fawu-recurso small {
+            color: #738196;
+            font-size: 13px;
+        }
+        
+        .fawu-recurso-flecha {
+            color: #078fbe;
+            font-size: 23px;
+        }
+        
+        .fawu-institucional-contenido > .fawu-presidencia {
+            margin-top: 28px;
+            color: #687789;
+            font-size: 13px;
+            font-style: italic;
+        }
+        
+        /* Adaptación para celulares */
+        
+        @media (max-width: 760px) {
+            .fawu-institucional {
+                padding: 48px 18px;
+            }
+        
+            .fawu-objetivos {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin: 30px 0 40px;
+            }
+        
+            .fawu-objetivo {
+                padding: 23px;
+            }
+        
+            .fawu-invitacion {
+                padding: 32px 20px;
+            }
+        
+            .fawu-recurso {
+                padding: 17px;
+            }
+        
+            .fawu-etiquetas span {
+                font-size: 13px;
+            }
+        }
+       
     </style>
 </head>
 
@@ -325,9 +583,155 @@
     <a href="#escuelas" class="fawu-header-cta">
       Encontrá tu sede <span>→</span>
     </a>
-
+      
+    <a href="#federacion">La Federación
+    </a>
+      
   </div>
 </header>
+
+<!-- SECCIÓN: LA FEDERACIÓN -->
+<section class="fawu-institucional" id="federacion">
+
+  <div class="fawu-institucional-contenido">
+
+    <div class="fawu-institucional-etiqueta">
+      CONOCÉ NUESTRA INSTITUCIÓN
+    </div>
+
+    <h2>Federación Argentina de Wushu</h2>
+    <p class="fawu-institucional-chino">
+      阿根廷武术联合会
+    </p>
+
+    <div class="fawu-institucional-linea"></div>
+
+    <p class="fawu-institucional-intro">
+      La Federación Argentina de Wushu (FAWU) tiene como objeto
+      representar, organizar, coordinar y promover el desarrollo
+      de las disciplinas de las artes marciales chinas en todo
+      el territorio nacional.
+    </p>
+
+    <p>
+      Trabajamos para impulsar la práctica del Wushu Kung Fu,
+      fortalecer la formación de practicantes e instructores,
+      promover criterios de evaluación y certificación, y
+      contribuir al crecimiento técnico, deportivo, educativo
+      y cultural de nuestras disciplinas.
+    </p>
+
+    <p>
+      Creemos que el desarrollo de las artes marciales chinas
+      requiere compromiso, formación continua, responsabilidad
+      y trabajo conjunto. Por eso, buscamos consolidar una
+      estructura federal que fortalezca los vínculos entre
+      organizaciones y amplíe las oportunidades de participación
+      en todo el país.
+    </p>
+
+    <!-- OBJETIVOS INSTITUCIONALES -->
+    <div class="fawu-objetivos">
+
+      <article class="fawu-objetivo">
+        <div class="fawu-objetivo-icono">✦</div>
+        <h3>Formación y capacitación</h3>
+        <p>
+          Promover la mejora continua de la enseñanza y la
+          capacitación de instructores, entrenadores y practicantes.
+        </p>
+      </article>
+
+      <article class="fawu-objetivo">
+        <div class="fawu-objetivo-icono">✦</div>
+        <h3>Desarrollo deportivo</h3>
+        <p>
+          Ampliar las oportunidades de participación y favorecer
+          la formación de nuevos talentos y atletas.
+        </p>
+      </article>
+
+      <article class="fawu-objetivo">
+        <div class="fawu-objetivo-icono">✦</div>
+        <h3>Tradición y cultura</h3>
+        <p>
+          Preservar las raíces históricas, culturales y filosóficas
+          de las artes marciales chinas.
+        </p>
+      </article>
+
+    </div>
+
+    <!-- DISCIPLINAS -->
+    <div class="fawu-disciplinas" id="wushu">
+      <h3>Un universo de disciplinas</h3>
+      <p>
+        La FAWU promueve el desarrollo de diversas expresiones
+        de las artes marciales chinas, respetando las características
+        y particularidades de cada una.
+      </p>
+
+      <div class="fawu-etiquetas">
+        <span>Wushu contemporáneo · 现代武术</span>
+        <span>Wushu tradicional · 传统武术</span>
+        <span>Taijiquan · 太极拳</span>
+        <span>Wushu Sanda · 武术散打</span>
+        <span>Shaolin Kung Fu · 少林功夫</span>
+      </div>
+    </div>
+
+    <!-- INVITACIÓN -->
+    <div class="fawu-invitacion">
+      <h3>Construyamos juntos el futuro del Wushu argentino</h3>
+      <p>
+        Invitamos a escuelas, asociaciones, instructores,
+        practicantes y atletas de todo el país a sumarse y
+        contribuir al desarrollo presente y futuro del Wushu
+        en Argentina.
+      </p>
+      <a href="#escuelas" class="fawu-institucional-boton">
+        Encontrá una sede <span>→</span>
+      </a>
+    </div>
+
+    <!-- RECURSOS -->
+    <div class="fawu-recursos">
+      <h3>Recursos oficiales</h3>
+
+      <a
+        href="https://drive.google.com/file/d/1hywYM0p_nG55MVLagia9dUH-KN4JeRhk/view?usp=sharing"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="fawu-recurso"
+      >
+        <span>
+          <strong>Registro Nacional de Instructores</strong>
+          <small>Consultar el documento del registro</small>
+        </span>
+        <span class="fawu-recurso-flecha">↗</span>
+      </a>
+
+      <a
+        href="https://federacionargentinadewushu.github.io/fawu/"
+        class="fawu-recurso"
+      >
+        <span>
+          <strong>Mapa Digital de Afiliados (FAMDA)</strong>
+          <small>Explorar las sedes y organizaciones</small>
+        </span>
+        <span class="fawu-recurso-flecha">→</span>
+      </a>
+    </div>
+
+    <p class="fawu-presidencia">
+      Bajo la presidencia de Hong Wen Wu, la FAWU continúa
+      trabajando para fortalecer su estructura institucional
+      y consolidarse como un espacio de referencia para la
+      comunidad del Wushu en Argentina.
+    </p>
+
+  </div>
+</section>
 
     
 <div class="contenedor">
