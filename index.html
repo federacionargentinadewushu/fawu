@@ -554,7 +554,16 @@
                 font-size: 13px;
             }
         }
-       
+
+        /* Vistas de la página */
+        .vista-pagina {
+            display: block;
+        }
+        
+        .vista-pagina.oculta {
+            display: none !important;
+        }
+        
     </style>
 </head>
 
@@ -571,7 +580,7 @@
         class="fawu-header-logo"
       >
     </a>
-
+<!--
     <nav class="fawu-header-nav" aria-label="Navegación principal">
       <a href="#inicio" class="activo">Inicio</a>
       <a href="#federacion">La Federación</a>
@@ -583,12 +592,30 @@
     <a href="#escuelas" class="fawu-header-cta">
       Encontrá tu sede <span>→</span>
     </a>
-      
+-->
+    
+    
+    <nav class="fawu-header-nav" aria-label="Navegación principal">
+      <a href="#inicio" data-vista="inicio" class="activo">Inicio</a>
+    
+      <a href="#federacion" data-vista="federacion">
+        La Federación
+      </a>
+    
+      <a href="#inicio" data-vista="inicio">Wushu</a>
+      <a href="#inicio" data-vista="inicio">Sedes</a>
+      <a href="#inicio" data-vista="inicio">Noticias</a>
+    </nav>
+    
+    <a href="#inicio" data-vista="inicio" class="fawu-header-cta">
+      Encontrá tu sede <span>→</span>
+    </a>
+   
   </div>
 </header>
 
 <!-- SECCIÓN: LA FEDERACIÓN -->
-<section class="fawu-institucional" id="federacion">
+<section class="fawu-institucional vista-pagina" id="vista-federacion" style="display: none;" >
 
   <div class="fawu-institucional-contenido">
 
@@ -730,46 +757,47 @@
   </div>
 </section>
 
+<div class="contenedor vista-pagina" id="vista-inicio">
+<!-- TODO tu código actual del mapa, filtros y listado -->
+    <div class="contenedor" >
     
-<div class="contenedor">
-
-    <h1>Mapa Digital de Afiliados (FAMDA)</h1>
-
-    <p class="subtitulo">
-        Encontrá la sede más cercana seleccionando una zona.
-    </p>
-
-    <div class="filtro">
-        <label for="zona">Provincia / zona</label>
-
-        <select id="zona">
-            <option value="Todas">Todas las provincias</option>
-            <option value="Buenos Aires">Buenos Aires</option>
-            <option value="Capital">Capital (CABA)</option>
-            <option value="Córdoba">Córdoba</option>
-            <option value="Entre Ríos">Entre Ríos</option>
-            <option value="Mendoza">Mendoza</option>
-            <option value="Chaco">Chaco</option>
-            <option value="Santa Fe">Santa Fe</option>
-            <option value="San Juan">San Juan</option>
-            <option value="Río Negro">Río Negro</option>
-            <option value="Tucumán">Tucumán</option>
-        </select>
+        <h1>Mapa Digital de Afiliados (FAMDA)</h1>
+    
+        <p class="subtitulo">
+            Encontrá la sede más cercana seleccionando una zona.
+        </p>
+    
+        <div class="filtro">
+            <label for="zona">Provincia / zona</label>
+    
+            <select id="zona">
+                <option value="Todas">Todas las provincias</option>
+                <option value="Buenos Aires">Buenos Aires</option>
+                <option value="Capital">Capital (CABA)</option>
+                <option value="Córdoba">Córdoba</option>
+                <option value="Entre Ríos">Entre Ríos</option>
+                <option value="Mendoza">Mendoza</option>
+                <option value="Chaco">Chaco</option>
+                <option value="Santa Fe">Santa Fe</option>
+                <option value="San Juan">San Juan</option>
+                <option value="Río Negro">Río Negro</option>
+                <option value="Tucumán">Tucumán</option>
+            </select>
+        </div>
+    
+        <div class="contenido">
+    
+            <!-- MAPA -->
+            <div id="mapa"></div>
+    
+            <!-- LISTA DE SEDES -->
+            <div class="sedes" id="listaSedes"></div>
+    
+        </div>
+    
     </div>
 
-    <div class="contenido">
-
-        <!-- MAPA -->
-        <div id="mapa"></div>
-
-        <!-- LISTA DE SEDES -->
-        <div class="sedes" id="listaSedes"></div>
-
-    </div>
-
-</div>
-
-
+</div>  
 <!-- Leaflet -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -1344,7 +1372,56 @@
     }
   }
 </style>
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        const enlaces = document.querySelectorAll("[data-vista]");
+        const vistaMapa = document.getElementById("vista-inicio");
+        const vistaFederacion = document.getElementById("vista-federacion");
+    
+        function mostrarVista(nombre) {
+            // Ocultar todas las vistas
+            vistaMapa.classList.add("oculta");
+            vistaFederacion.classList.add("oculta");
+    
+            // Mostrar la vista seleccionada
+            if (nombre === "federacion") {
+                vistaFederacion.classList.remove("oculta");
+            } else {
+                vistaMapa.classList.remove("oculta");
+            }
+    
+            // Actualizar el elemento activo del menú
+            document.querySelectorAll(".fawu-header-nav a").forEach(function (enlace) {
+                enlace.classList.toggle(
+                    "activo",
+                    enlace.dataset.vista === nombre
+                );
+            });
+    
+            // Actualizar la dirección sin recargar la página
+            history.replaceState(null, "", "#" + nombre);
+    
+            // Volver arriba para mostrar la sección elegida
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    
+        enlaces.forEach(function (enlace) {
+            enlace.addEventListener("click", function (evento) {
+                evento.preventDefault();
+                mostrarVista(enlace.dataset.vista);
+            });
+        });
+    
+        // Mostrar la vista correcta al entrar o recargar
+        if (window.location.hash === "#federacion") {
+            mostrarVista("federacion");
+        } else {
+            mostrarVista("inicio");
+        }
+    });
 
+</script>
 <script>
   document.getElementById("fawu-year").textContent =
     new Date().getFullYear();
