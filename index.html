@@ -556,14 +556,14 @@
         }
 
         /* Vistas de la página */
-        .vista-pagina {
-            display: block;
+        .vista-pagina:not(.oculta) {
+            display: block !important;
         }
         
         .vista-pagina.oculta {
             display: none !important;
         }
-        
+                
     </style>
 </head>
 
@@ -615,7 +615,7 @@
 </header>
 
 <!-- SECCIÓN: LA FEDERACIÓN -->
-<section class="fawu-institucional vista-pagina" id="vista-federacion" style="display: none;" >
+<section class="fawu-institucional vista-pagina" id="vista-federacion" >
 
   <div class="fawu-institucional-contenido">
 
