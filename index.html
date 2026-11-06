@@ -775,6 +775,7 @@
                 <option value="Buenos Aires">Buenos Aires</option>
                 <option value="Capital">Capital (CABA)</option>
                 <option value="Córdoba">Córdoba</option>
+                <option value="Chubut">Córdoba</option>
                 <option value="Entre Ríos">Entre Ríos</option>
                 <option value="Mendoza">Mendoza</option>
                 <option value="Chaco">Chaco</option>
@@ -911,7 +912,43 @@
             direccion: "Posadas 268 1er piso, Resistencia, Chaco",
             lat: -27.4444725, lon: -58.9893767
         },
+        {
+            nombre: "Yang Taijiquan Tradicional Resistencia",
+            sede: "Sede Prana",
+            zona: "Chaco",
+            direccion: "C. French 1218, Resistencia, Chaco",
+            lat: -27.4445787, lon: -58.97218
+        },
+        {
+            nombre: "Yang Taijiquan Tradicional Resistencia",
+            sede: "Sede Plaza 12 de Octubre",
+            zona: "Chaco",
+            direccion: "Plaza 12 de Octubre Av. Wilde 300, Resistencia, Chaco",
+            lat: -27.4441086, lon: -58.9865564
+        },
+        {
+            nombre: "Yang Taijiquan Tradicional Resistencia",
+            sede: "Sede Marana",
+            zona: "Chaco",
+            direccion: "Ameghino 1055, Resistencia, Chaco",
+            lat: -27.462571, lon: -58.9803343
+        },
+        {
+            nombre: "Yang Taijiquan Tradicional Resistencia",
+            sede: "Sede Chandra",
+            zona: "Chaco",
+            direccion: "Zorzal 3484, Resistencia, Chaco",
+            lat: -27.4782939, lon: -58.9548547
+        },
+        {
+            nombre: "Yang Taijiquan Tradicional Resistencia",
+            sede: "Sede Anima Pura",
+            zona: "Chaco",
+            direccion: "Hipólito Yrigoyen 1475, Resistencia, Chaco",
+            lat: -27.4615549, lon: -58.9722328
+        },
 
+        
         // 7. Ling Dao Long
         {
             nombre: "Ling Dao Long",
@@ -944,6 +981,41 @@
             zona: "Buenos Aires",
             direccion: "Congreso 1728, Haedo, Buenos Aires",
             lat: -34.6424231, lon: -58.6014746
+        },
+        {
+            nombre: "Asociación Lung Chuan",
+            sede: "Sede Mar del Plata",
+            zona: "Buenos Aires",
+            direccion: "Neuquén 2558, Mar del Plata, Buenos Aires",
+            lat: -37.9958444, lon: -57.573483
+        },
+        {
+            nombre: "Asociación Lung Chuan",
+            sede: "Sede CABA 1",
+            zona: "Capital",
+            direccion: "Venezuela 1647, CABA",
+            lat: -34.6144736, lon: -58.3895609
+        },
+        {
+            nombre: "Asociación Lung Chuan",
+            sede: "Sede CABA 2",
+            zona: "Capital",
+            direccion: "Brasil 444, CABA",
+            lat: -34.6252949, lon: -58.3716348
+        },
+        {
+            nombre: "Asociación Lung Chuan",
+            sede: "Sede CABA 3",
+            zona: "Capital",
+            direccion: "Independencia 448, CABA",
+            lat: -34.6172234, lon: -58.3723634
+        },
+        {
+            nombre: "Asociación Lung Chuan",
+            sede: "Sede Sarandí",
+            zona: "Buenos Aires",
+            direccion: "Pasteur 270, Sarandí",
+            lat: -34.6895567, lon: -58.3422517
         },
 
         // 10. Lu Chuan Kung Fu
@@ -1017,8 +1089,15 @@
             direccion: "San Luis 424, Pilar",
             lat: -34.4671519, lon: -58.9064119
         },
-        
-        // 18. Club Argentino de Wushu
+        // 18. Instituto Wu Wei
+        {
+            nombre: "Instituto Wu Wei",
+            sede: "Sede central",
+            zona: "Chubut",
+            direccion: "Ramón y Cajal 175, Trelew, Chubut",
+            lat: -43.254314, lon: -65.3211611
+        },
+        // 19. Club Argentino de Wushu
         {
             nombre: "Club Argentino de Wushu",
             sede: "Sede central Bogado",
@@ -1120,9 +1199,9 @@
 
         // Filtrar sedes
 
-        const sedesFiltradas = sedes.filter(
-            sede => sede.zona === zonaSeleccionada
-        );
+        const sedesFiltradas = zonaSeleccionada === "Todas"
+        ? sedes
+        : sedes.filter(sede => sede.zona === zonaSeleccionada);
 
 
         // Coordenadas para ajustar el mapa
