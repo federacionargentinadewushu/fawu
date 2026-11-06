@@ -1182,6 +1182,18 @@
 
     let grupoMarcadores = L.layerGroup().addTo(mapa);
 
+    // ==========================================
+    // ICONO PERSONALIZADO
+    // ==========================================
+    
+    const iconoSede = L.icon({
+        iconUrl: 'assets/marcador.png',
+    
+        iconSize: [35, 35],
+        iconAnchor: [17, 35],
+        popupAnchor: [0, -35]
+    });
+
 
     // ==========================================
     // MOSTRAR SEDES
@@ -1217,10 +1229,10 @@
             // MARCADOR EN EL MAPA
             // ------------------------------
 
-            const marcador = L.marker([
-                sede.lat,
-                sede.lon
-            ]);
+            const marcador = L.marker(
+                [sede.lat, sede.lon],
+                { icon: iconoSede }
+            );
 
 
             // Popup del marcador
