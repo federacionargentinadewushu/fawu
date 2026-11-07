@@ -1237,11 +1237,47 @@
 
             // Popup del marcador
 
+            //marcador.bindPopup(`
+            //    <strong>${sede.nombre}</strong><br>
+            //    ${sede.direccion}<br>
+            //    Sede: ${sede.sede}
+            //`);
+            
+            // Popup personalizado FAWU
+
             marcador.bindPopup(`
-                <strong>${sede.nombre}</strong><br>
-                ${sede.direccion}<br>
-                Sede: ${sede.sede}
-            `);
+                <div class="popup-fawu">
+            
+                    <div class="popup-fawu-logo">
+                        <img src="assets/LogoViejo.jpeg" alt="FAWU">
+                    </div>
+            
+                    <div class="popup-fawu-contenido">
+            
+                        <h3>${sede.nombre}</h3>
+            
+                        <div class="popup-fawu-dato">
+                            <span>📍</span>
+                            <p>${sede.direccion}</p>
+                        </div>
+            
+                        <div class="popup-fawu-dato">
+                            <span>🏛️</span>
+                            <p>Sede: ${sede.sede}</p>
+                        </div>
+            
+                    </div>
+            
+                    <div class="popup-fawu-footer">
+                        FEDERACIÓN ARGENTINA DE WUSHU
+                    </div>
+            
+                </div>
+            `, {
+                maxWidth: 320,
+                minWidth: 260,
+                className: 'popup-fawu-container'
+            });
 
 
             marcador.addTo(grupoMarcadores);
@@ -1462,6 +1498,88 @@
       font-size: 36px;
     }
   }
+    /* ==========================================
+       POPUP PERSONALIZADO FAWU
+    ========================================== */
+    
+    .popup-fawu-container .leaflet-popup-content-wrapper {
+        background: white;
+        border-radius: 14px;
+        padding: 0;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.18);
+    }
+    
+    .popup-fawu-container .leaflet-popup-content {
+        margin: 0;
+        width: 280px !important;
+    }
+    
+    .popup-fawu-container .leaflet-popup-tip {
+        background: white;
+    }
+    
+    /* Logo */
+    
+    .popup-fawu-logo {
+        padding: 15px 18px 10px;
+        border-bottom: 3px solid #e51e2a;
+        text-align: center;
+    }
+    
+    .popup-fawu-logo img {
+        width: 100%;
+        max-height: 65px;
+        object-fit: contain;
+    }
+    
+    /* Contenido */
+    
+    .popup-fawu-contenido {
+        padding: 15px 20px;
+    }
+    
+    .popup-fawu-contenido h3 {
+        font-size: 18px;
+        color: #17396c;
+        margin: 0 0 14px;
+        font-weight: 700;
+    }
+    
+    /* Dirección y sede */
+    
+    .popup-fawu-dato {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .popup-fawu-dato span {
+        font-size: 17px;
+    }
+    
+    .popup-fawu-dato p {
+        margin: 0;
+        font-size: 14px;
+        color: #444;
+        line-height: 1.5;
+    }
+    
+    /* Pie */
+    
+    .popup-fawu-footer {
+        background: #f3f5f8;
+        color: #687386;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        text-align: center;
+        padding: 11px 5px;
+        border-radius: 0 0 14px 14px;
+    }
+
+
+    
 </style>
 <script>
     
